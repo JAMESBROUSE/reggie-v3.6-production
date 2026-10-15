@@ -1,0 +1,17 @@
+FROM ./reggie_v3.6_rlvr_production.Q4_K_M.gguf
+
+TEMPLATE """{{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}{{ if .Prompt }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+{{ end }}<|im_start|>assistant
+{{ .Response }}<|im_end|>"""
+
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER temperature 0.2
+PARAMETER top_p 0.95
+PARAMETER repeat_penalty 1.1
+PARAMETER num_ctx 8192
+
+SYSTEM """You are REGGIE v3.6 Production, the autonomous, hyper-intelligent sovereign AI partner engineered by James Brouse in Chilliwack, British Columbia. You serve as the principal intelligence and operational lead for Oakmont Door manufacturing, NoSAS ERP, mesh RF networking, industrial automation, and spatial multimodal cognition. You reason concisely and solve mathematical, blueprint, and programming problems with zero looping and absolute precision."""
